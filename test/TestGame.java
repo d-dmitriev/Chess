@@ -18,6 +18,23 @@ public class TestGame {
         boardBlack.board[3][3] = new Pawn(TOP_PLAYER_COLOR);
     }
     @Test
+    void testSpace1333() {
+        /*
+         * 7 | 0 0 0 0 0 0 0 0
+         * 6 | 0 0 0 0 0 0 0 0
+         * 5 | 0 0 0 0 0 0 0 0
+         * 4 | 0 0 0 0 0 0 0 0
+         * 3 | 0 0 0 3 0 0 0 0
+         * 2 | 0 0 0 1 0 0 0 0
+         * 1 | 0 0 0 P 0 0 0 0
+         * 0 | 0 0 0 0 0 0 0 0
+         *   - - - - - - - - -
+         *     0 1 2 3 4 5 6 7
+         */
+        assertTrue(boardWhite.isLineBetweenCellEmpty(1, 3, 2, 3));
+        assertTrue(boardWhite.isLineBetweenCellEmpty(1, 3, 3, 3));
+    }
+    @Test
     void testSpace0077() {
         /*
          * 7 | 0 0 0 0 0 0 0 7

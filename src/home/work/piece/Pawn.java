@@ -21,6 +21,8 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn) {
         if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false; // Не выходить за пределы
+        if (!game.isLineBetweenCellEmpty(line, column, toLine, toColumn)) // Перепрыгивать через другие фигуры запрещено
+            return false;
         return isPawnMove(line, column, toLine, toColumn) //Как ходит Пешка?
                 || isPawnEat(game, line, column, toLine, toColumn);
     }

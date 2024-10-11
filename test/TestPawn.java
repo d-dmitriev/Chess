@@ -22,7 +22,7 @@ public class TestPawn {
          * 5 | 0 0 0 P 0 K 0 0
          * 4 | 0 0 0 0 0 0 0 0
          * 3 | 0 0 0 P 0 P 0 0
-         * 2 | 0 0 0 0 0 0 0 0
+         * 2 | 0 0 0 0 0 0 0 P
          * 1 | 0 0 0 0 0 0 0 0
          * 0 | 0 0 0 0 0 0 0 0
          *   - - - - - - - - -
@@ -32,10 +32,11 @@ public class TestPawn {
         boardWhite.board[5][5] = new King(TOP_PLAYER_COLOR);
         boardWhite.board[3][3] = new Pawn(TOP_PLAYER_COLOR);
         boardWhite.board[3][5] = new Pawn(TOP_PLAYER_COLOR);
+        boardWhite.board[2][7] = new Pawn(TOP_PLAYER_COLOR);
         /*
          * 7 | 0 0 0 0 0 0 0 0
          * 6 | 0 0 0 0 0 0 0 0
-         * 5 | 0 0 0 0 0 0 0 0
+         * 5 | 0 0 0 0 0 0 0 P
          * 4 | 0 0 0 0 0 0 0 0
          * 3 | 0 0 0 P 0 P 0 0
          * 2 | 0 0 0 0 0 0 0 0
@@ -46,6 +47,7 @@ public class TestPawn {
          */
         boardBlack.board[3][3] = new Pawn(TOP_PLAYER_COLOR);
         boardBlack.board[3][5] = new Pawn(TOP_PLAYER_COLOR);
+        boardBlack.board[5][7] = new Pawn(TOP_PLAYER_COLOR);
     }
     @Test
     void allowedMove() {
@@ -171,6 +173,32 @@ public class TestPawn {
          *     0 1 2 3 4 5 6 7
          */
         assertFalse(pawnBlack.canMoveToPosition(boardBlack, 5, 1, 6, 1));
+        /*
+         * 7 | 0 0 0 0 0 0 0 0
+         * 6 | 0 0 0 0 0 0 0 0
+         * 5 | 0 0 0 P 0 K 0 0
+         * 4 | 0 0 0 0 0 0 0 0
+         * 3 | 0 0 0 P 0 P 0 0
+         * 2 | 0 0 0 0 0 0 0 P
+         * 1 | 0 0 0 0 0 0 0 P
+         * 0 | 0 0 0 0 0 0 0 0
+         *   - - - - - - - - -
+         *     0 1 2 3 4 5 6 7
+         */
+        assertFalse(pawnWhite.canMoveToPosition(boardWhite, 1, 7, 3, 7));
+        /*
+         * 7 | 0 0 0 0 0 0 0 0
+         * 6 | 0 0 0 0 0 0 0 P
+         * 5 | 0 0 0 0 0 0 0 P
+         * 4 | 0 0 0 0 0 0 0 0
+         * 3 | 0 0 0 P 0 P 0 0
+         * 2 | 0 0 0 0 0 0 0 0
+         * 1 | 0 0 0 0 0 0 0 0
+         * 0 | 0 0 0 0 0 0 0 0
+         *   - - - - - - - - -
+         *     0 1 2 3 4 5 6 7
+         */
+        assertFalse(pawnBlack.canMoveToPosition(boardBlack, 6, 7, 4, 7));
     }
     @Test
     void canEat() {
