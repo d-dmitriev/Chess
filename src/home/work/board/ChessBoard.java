@@ -40,20 +40,20 @@ public class ChessBoard implements Game {
         System.out.println("Turn " + nowPlayerColor());
         System.out.println();
         System.out.println("Player 2(Black)");
-        System.out.println();
-        System.out.println("\t0\t1\t2\t3\t4\t5\t6\t7");
+//        System.out.println();
+        System.out.println("\t 0  1  2  3  4  5  6  7");
 
         for (int i = 7; i > -1; i--) {
             System.out.print(i + "\t");
             for (int j = 0; j < 8; j++) {
+                String s = (Math.floorMod(i, 2) == 0 && Math.floorMod(j, 2) == 0) || (Math.floorMod(i, 2) == 1 && Math.floorMod(j, 2) == 1) ? "\u001b[48;5;88m " : "\u001b[48;5;180m ";
                 if (isEmptyCell(i, j)) {
-                    System.out.print(".." + "\t");
+                    System.out.print(s + "  ");
                 } else {
-                    System.out.print(getPieceOnCell(i, j).getSymbol() + getPieceOnCell(i, j).getColor().substring(0, 1).toLowerCase() + "\t");
+                    System.out.print(s + getPieceOnCell(i, j).getSymbolForBoard() + " ");
                 }
             }
             System.out.println("\u001B[0m");
-            System.out.println();
         }
         System.out.println("Player 1(White)");
     }
