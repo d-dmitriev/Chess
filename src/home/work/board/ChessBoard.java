@@ -76,7 +76,7 @@ public class ChessBoard implements Game {
 
     public boolean isOpponentPieceOnCell(int line, int column) {
         ChessPiece piece = getPieceOnCell(line, column);
-        return piece !=null && piece.hasColor(getOpponentColor());
+        return piece != null && piece.hasColor(getOpponentColor());
     }
 
     public boolean isOpponentOrEmpty(int line, int column) {
@@ -101,27 +101,36 @@ public class ChessBoard implements Game {
         if (isPawnOnCell(fromLine, fromColumn) && ((nowPlayerColor().equals(BOTTOM_PLAYER_COLOR) && toLine == TOP_PLAYER_KING_LINE) || (nowPlayerColor().equals(TOP_PLAYER_COLOR) && toLine == BOTTOM_PLAYER_KING_LINE))) {
             piece = new Queen(nowPlayerColor());
         }
-        setPaceOnCell(piece, toLine, toColumn);
+        setPieceOnCell(piece, toLine, toColumn);
         piece.uncheck();
-        setPaceOnCell(null, fromLine, fromColumn);
+        setPieceOnCell(null, fromLine, fromColumn);
     }
 
     public boolean isRookOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(ROOK_SYMBOL);
     }
+
     public boolean isQueenOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(QUEEN_SYMBOL);
     }
+
     public boolean isBishopOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(BISHOP_SYMBOL);
     }
+
+    public boolean isHorseOnCell(int line, int column) {
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(HORSE_SYMBOL);
+    }
+
     public boolean isKingOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(KING_SYMBOL);
     }
+
     public boolean isPawnOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(PAWN_SYMBOL);
@@ -164,7 +173,7 @@ public class ChessBoard implements Game {
         return getPieceOnCell(startLine, startColumn).canMoveToPosition(this, startLine, startColumn, endLine, endColumn);
     }
 
-    private void setPaceOnCell(ChessPiece piece, int line, int column) {
+    private void setPieceOnCell(ChessPiece piece, int line, int column) {
         board[line][column] = piece;
     }
 }

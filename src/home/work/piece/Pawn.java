@@ -38,9 +38,9 @@ public class Pawn extends ChessPiece {
     }
 
     private boolean isPawnEat(Game game, int line, int column, int toLine, int toColumn) {
-        return game.isOpponentPieceOnCell(toLine, toColumn) //Едим только соперника
-                && !game.isKingOnCell(toLine, toColumn) //Не едим Короля
-                && (Math.abs(column - toColumn) == 1 && (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1 || color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1)); //Едим только вперед
+        if (game.isKingOnCell(toLine, toColumn)) return false; // Не едим Короля
+        return game.isOpponentPieceOnCell(toLine, toColumn) // Едим только соперника
+                && (Math.abs(column - toColumn) == 1 && (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1 || color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1)); // Едим только вперед
     }
 
     private boolean isPawnMove(int line, int column, int toLine, int toColumn) {

@@ -20,6 +20,7 @@ public interface Game {
     boolean isRookOnCell(int line, int column);
     boolean isQueenOnCell(int line, int column);
     boolean isBishopOnCell(int line, int column);
+    boolean isHorseOnCell(int line, int column);
 
     boolean isNotUnderAttack(int line, int column);
 }
