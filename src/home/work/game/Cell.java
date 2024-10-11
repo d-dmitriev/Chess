@@ -9,6 +9,15 @@ public class Cell {
     public Cell(Game game) {
         this.game = game;
     }
+    public boolean isLineBetweenCellEmpty(int fromLine, int fromColumn, int toLine, int toColumn) {
+        for (int lineDiff = fromLine - toLine, columnDiff = fromColumn - toColumn; lineDiff != 0 || columnDiff != 0; lineDiff += Integer.compare(0, lineDiff), columnDiff += Integer.compare(0, columnDiff)) {
+            int tmpLine = toLine + lineDiff, tmpColumn = toColumn + columnDiff;
+            if (tmpLine == fromLine && tmpColumn == fromColumn) continue;
+            if (!game.isEmptyCell(tmpLine, tmpColumn)) return false;
+        }
+        return true;
+    }
+
     public boolean isUnderAttack(int line, int column) {
         /*
          * 7 | 0 0 0 0 K 0 0 0

@@ -71,12 +71,7 @@ public class ChessBoard implements Game {
     }
 
     public boolean isLineBetweenCellEmpty(int fromLine, int fromColumn, int toLine, int toColumn) {
-        for (int lineDiff = fromLine - toLine, columnDiff = fromColumn - toColumn; lineDiff != 0 || columnDiff != 0; lineDiff += Integer.compare(0, lineDiff), columnDiff += Integer.compare(0, columnDiff)) {
-            int tmpLine = toLine + lineDiff, tmpColumn = toColumn + columnDiff;
-            if (tmpLine == fromLine && tmpColumn == fromColumn) continue;
-            if (!isEmptyCell(tmpLine, tmpColumn)) return false;
-        }
-        return true;
+        return cell.isLineBetweenCellEmpty(fromLine, fromColumn, toLine, toColumn);
     }
 
     public boolean isOpponentPieceOnCell(int line, int column) {
