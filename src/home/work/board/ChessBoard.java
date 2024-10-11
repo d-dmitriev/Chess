@@ -75,7 +75,8 @@ public class ChessBoard implements Game {
     }
 
     public boolean isOpponentPieceOnCell(int line, int column) {
-        return hasColor(getPieceOnCell(line, column), getOpponentColor());
+        ChessPiece piece = getPieceOnCell(line, column);
+        return piece !=null && piece.hasColor(getOpponentColor());
     }
 
     public boolean isOpponentOrEmpty(int line, int column) {
@@ -83,7 +84,8 @@ public class ChessBoard implements Game {
     }
 
     public boolean isCurrentPlayerPieceOnCell(int line, int column) {
-        return hasColor(getPieceOnCell(line, column), nowPlayerColor());
+        ChessPiece piece = getPieceOnCell(line, column);
+        return piece != null && piece.hasColor(nowPlayerColor());
     }
 
     public ChessPiece getPieceOnCell(int line, int column) {
@@ -156,10 +158,6 @@ public class ChessBoard implements Game {
             return true;
         }
         return false;
-    }
-
-    private boolean hasColor(ChessPiece piece, String color) {
-        return piece != null && piece.getColor().equals(color);
     }
 
     private boolean canPieceMoveToPosition(int startLine, int startColumn, int endLine, int endColumn) {

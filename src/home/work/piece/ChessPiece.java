@@ -26,6 +26,10 @@ public abstract class ChessPiece {
         return this.getSymbol().equals(symbol);
     }
 
+    public boolean hasColor(String color) {
+        return this.color.equals(color);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public abstract boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn);
 
