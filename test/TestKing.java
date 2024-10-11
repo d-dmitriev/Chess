@@ -23,13 +23,14 @@ public class TestKing {
          * 3 | 0 0 0 0 0 0 0 0
          * 2 | 0 0 0 0 0 0 B 0
          * 1 | 0 0 0 0 0 0 0 0
-         * 0 | 0 0 0 0 0 0 0 0
+         * 0 | 0 0 0 0 0 P 0 0
          *   - - - - - - - - -
          *     0 1 2 3 4 5 6 7
          */
         boardNotEmpty.board[2][6] = new Bishop(TOP_PLAYER_COLOR);
         boardNotEmpty.board[6][3] = new Rook(TOP_PLAYER_COLOR);
         boardNotEmpty.board[4][7] = new Queen(TOP_PLAYER_COLOR);
+        boardNotEmpty.board[0][5] = new Queen(BOTTOM_PLAYER_COLOR);
 
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -175,7 +176,7 @@ public class TestKing {
          * 3 | 0 0 0 0 0 0 0 0
          * 2 | 0 0 0 0 0 0 B 0
          * 1 | 0 0 0 0 0 X 0 0
-         * 0 | 0 0 0 0 K 0 0 0
+         * 0 | 0 0 0 0 K P 0 0
          *   - - - - - - - - -
          *     0 1 2 3 4 5 6 7
          */
@@ -189,7 +190,7 @@ public class TestKing {
          * 3 | 0 0 0 0 0 0 0 0
          * 2 | 0 0 0 0 0 0 B 0
          * 1 | 0 0 0 0 X 0 0 0
-         * 0 | 0 0 0 0 K 0 0 0
+         * 0 | 0 0 0 0 K P 0 0
          *   - - - - - - - - -
          *     0 1 2 3 4 5 6 7
          */
@@ -203,7 +204,7 @@ public class TestKing {
          * 3 | 0 0 0 0 0 0 0 0
          * 2 | 0 0 0 0 0 0 B 0
          * 1 | 0 0 0 X 0 0 0 0
-         * 0 | 0 0 0 0 K 0 0 0
+         * 0 | 0 0 0 0 K P 0 0
          *   - - - - - - - - -
          *     0 1 2 3 4 5 6 7
          */
@@ -288,5 +289,37 @@ public class TestKing {
          *     0 1 2 3 4 5 6 7
          */
         assertFalse(king.canMoveToPosition(boardKings, 3, 4, 2, 5));
+    }
+    @Test
+    void canEat() {
+        /* Может есть чужую фигуру если клетка не под боем
+         * 7 | 0 0 0 0 0 0 0 0
+         * 6 | 0 0 0 R 0 0 0 0
+         * 5 | 0 0 0 0 0 0 0 0
+         * 4 | 0 0 0 0 0 0 0 Q
+         * 3 | 0 0 0 0 0 0 0 0
+         * 2 | 0 0 0 0 0 0 B 0
+         * 1 | 0 0 0 0 0 0 K 0
+         * 0 | 0 0 0 0 0 P 0 0
+         *   - - - - - - - - -
+         *     0 1 2 3 4 5 6 7
+         */
+        assertTrue(king.canMoveToPosition(boardNotEmpty, 1, 6, 2, 6));
+    }
+    @Test
+    void canNotEat() {
+        /* Не может есть свою фигуру
+         * 7 | 0 0 0 0 0 0 0 0
+         * 6 | 0 0 0 R 0 0 0 0
+         * 5 | 0 0 0 0 0 0 0 0
+         * 4 | 0 0 0 0 0 0 0 Q
+         * 3 | 0 0 0 0 0 0 0 0
+         * 2 | 0 0 0 0 0 0 B 0
+         * 1 | 0 0 0 0 0 0 0 0
+         * 0 | 0 0 0 0 0 P K 0
+         *   - - - - - - - - -
+         *     0 1 2 3 4 5 6 7
+         */
+        assertFalse(king.canMoveToPosition(boardNotEmpty, 0, 6, 0, 5));
     }
 }

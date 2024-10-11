@@ -20,16 +20,9 @@ public class Pawn extends ChessPiece {
      */
     @Override
     public boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn) {
-        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false;
-        return (column == toColumn && (
-                (color.equals(TOP_PLAYER_COLOR) && line == 6 && Math.abs(line - toLine) == 2) ||
-                        (color.equals(BOTTOM_PLAYER_COLOR) && line == 1 && Math.abs(line - toLine) == 2) ||
-                        (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1) ||
-                        (color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1)
-        )) || (game.isOpponentPieceOnCell(toLine, toColumn) && !game.isKingOnCell(toLine, toColumn) && (
-                (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1 || color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1)
-                        && Math.abs(column - toColumn) == 1)
-        );
+        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false; // Не выходить за пределы
+        return isPawnMove(line, column, toLine, toColumn) //Как ходит Пешка?
+                || isPawnEat(game, line, column, toLine, toColumn);
     }
 
     @Override
@@ -40,5 +33,21 @@ public class Pawn extends ChessPiece {
     @Override
     public String getSymbolForBoard() {
         return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♟" : "\u001B[30m♟";
+    }
+
+    private boolean isPawnEat(Game game, int line, int column, int toLine, int toColumn) {
+        return game.isOpponentPieceOnCell(toLine, toColumn) //Едим только соперника
+                && !game.isKingOnCell(toLine, toColumn) //Не едим Короля
+                && (Math.abs(column - toColumn) == 1 && (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1 || color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1)); //Едим только вперед
+    }
+
+    private boolean isPawnMove(int line, int column, int toLine, int toColumn) {
+        return column == toColumn //Шагаем прямо
+                && (
+                (color.equals(TOP_PLAYER_COLOR) && line == 6 && line - toLine == 2) // Черные с начальной позиции могут идти вниз на 2 клетки
+                        || (color.equals(BOTTOM_PLAYER_COLOR) && line == 1 && line - toLine == -2) // Белые с начальной позиции могут идти вверх на 2 клетки
+                        || (color.equals(TOP_PLAYER_COLOR) && line - toLine == 1) // Черные могут идти вниз по одной клетке
+                        || (color.equals(BOTTOM_PLAYER_COLOR) && line - toLine == -1) // Белый могут идти вверх по одной клетке
+        );
     }
 }

@@ -19,12 +19,12 @@ public class Bishop extends ChessPiece {
      */
     @Override
     public boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn) {
-        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false; //Не выходить за пределы
-        if (Math.abs(line - toLine) != Math.abs(column - toColumn))
-            return false; //Не диагональные перемещения запрещены
-        if (!game.isLineBetweenCellEmpty(line, column, toLine, toColumn))
-            return false; //Перепрыгивать через другие фигуры запрещено
-        return game.isOpponentPieceOnCell(toLine, toColumn) || game.isEmptyCell(toLine, toColumn); //Целевая клетка пуста или на ней фигура противника
+        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false; // Не выходить за пределы
+        if (game.isKingOnCell(toLine, toColumn)) return false; //Не едим Короля
+        if (!game.isLineBetweenCellEmpty(line, column, toLine, toColumn)) // Перепрыгивать через другие фигуры запрещено
+            return false;
+        return isBishopMovie(line, column, toLine, toColumn) // Как ходит Ладья?
+                && game.isOpponentOrEmpty(toLine, toColumn); // Ходить можно если целевая клетка пуста или на ней фигура противника
     }
 
     @Override
@@ -35,5 +35,9 @@ public class Bishop extends ChessPiece {
     @Override
     public String getSymbolForBoard() {
         return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♝" : "\u001B[30m♝";
+    }
+
+    private static boolean isBishopMovie(int line, int column, int toLine, int toColumn) {
+        return Math.abs(line - toLine) == Math.abs(column - toColumn); // Диагональные перемещения
     }
 }

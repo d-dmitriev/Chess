@@ -80,6 +80,10 @@ public class ChessBoard implements Game {
         return hasColor(getPieceOnCell(line, column), getOpponentColor());
     }
 
+    public boolean isOpponentOrEmpty(int line, int column) {
+        return this.isOpponentPieceOnCell(line, column) || this.isEmptyCell(line, column);
+    }
+
     public boolean isCurrentPlayerPieceOnCell(int line, int column) {
         return hasColor(getPieceOnCell(line, column), nowPlayerColor());
     }
@@ -100,16 +104,20 @@ public class ChessBoard implements Game {
     }
 
     public boolean isRookOnCell(int line, int column) {
-        return this.getPieceOnCell(line, column).hasSymbol(ROOK_SYMBOL);
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(ROOK_SYMBOL);
     }
     public boolean isQueenOnCell(int line, int column) {
-        return this.getPieceOnCell(line, column).hasSymbol(QUEEN_SYMBOL);
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(QUEEN_SYMBOL);
     }
     public boolean isBishopOnCell(int line, int column) {
-        return this.getPieceOnCell(line, column).hasSymbol(BISHOP_SYMBOL);
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(BISHOP_SYMBOL);
     }
     public boolean isKingOnCell(int line, int column) {
-        return this.getPieceOnCell(line, column).hasSymbol(KING_SYMBOL);
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(KING_SYMBOL);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

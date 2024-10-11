@@ -19,9 +19,10 @@ public class King extends ChessPiece {
      */
     @Override
     public boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn) {
-        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false;
-        if (Math.abs(line - toLine) > 1 || Math.abs(column - toColumn) > 1) return false;
-        return !isUnderAttack(game, toLine, toColumn);
+        if (!game.checkPos(toLine) || !game.checkPos(toColumn)) return false; // Не выходить за пределы
+        return isKingMovie(line, column, toLine, toColumn) // Как ходит Король?
+                && !isUnderAttack(game, toLine, toColumn) // Не под атакой
+                && game.isOpponentOrEmpty(toLine, toColumn); // Ходить можно если целевая клетка пуста или на ней фигура противника
     }
 
     @Override
@@ -32,6 +33,10 @@ public class King extends ChessPiece {
     @Override
     public String getSymbolForBoard() {
         return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♚" : "\u001B[30m♚";
+    }
+
+    private static boolean isKingMovie(int line, int column, int toLine, int toColumn) {
+        return Math.abs(line - toLine) <= 1 && Math.abs(column - toColumn) <= 1;
     }
 
     public boolean isUnderAttack(Game game, int line, int column) {

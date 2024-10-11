@@ -5,6 +5,7 @@ import home.work.piece.ChessPiece;
 import static home.work.game.Constants.*;
 
 public interface Game {
+    boolean isOpponentOrEmpty(int line, int column);
     boolean isCurrentPlayerPieceOnCell(int line, int column);
     boolean isOpponentPieceOnCell(int line, int column);
     boolean isEmptyCell(int line, int column);
