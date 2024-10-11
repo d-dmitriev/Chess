@@ -29,6 +29,11 @@ public class King extends ChessPiece {
         return KING_SYMBOL;
     }
 
+    @Override
+    public String getSymbolForBoard() {
+        return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♚" : "\u001B[30m♚";
+    }
+
     public boolean isUnderAttack(Game game, int line, int column) {
         /*
          * 7 | 0 0 0 0 K 0 0 0

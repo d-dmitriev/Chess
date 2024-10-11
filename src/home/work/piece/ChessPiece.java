@@ -30,4 +30,6 @@ public abstract class ChessPiece {
     public abstract boolean canMoveToPosition(Game game, int line, int column, int toLine, int toColumn);
 
     public abstract String getSymbol();
+
+    public abstract String getSymbolForBoard();
 }

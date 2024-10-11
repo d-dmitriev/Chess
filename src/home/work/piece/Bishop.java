@@ -3,6 +3,7 @@ package home.work.piece;
 import home.work.game.Game;
 
 import static home.work.game.Constants.BISHOP_SYMBOL;
+import static home.work.game.Constants.BOTTOM_PLAYER_COLOR;
 
 public class Bishop extends ChessPiece {
     public Bishop(String color) {
@@ -29,5 +30,10 @@ public class Bishop extends ChessPiece {
     @Override
     public String getSymbol() {
         return BISHOP_SYMBOL;
+    }
+
+    @Override
+    public String getSymbolForBoard() {
+        return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♝" : "\u001B[30m♝";
     }
 }

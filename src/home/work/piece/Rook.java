@@ -2,6 +2,7 @@ package home.work.piece;
 
 import home.work.game.Game;
 
+import static home.work.game.Constants.BOTTOM_PLAYER_COLOR;
 import static home.work.game.Constants.ROOK_SYMBOL;
 
 public class Rook extends ChessPiece {
@@ -27,5 +28,10 @@ public class Rook extends ChessPiece {
     @Override
     public String getSymbol() {
         return ROOK_SYMBOL;
+    }
+
+    @Override
+    public String getSymbolForBoard() {
+        return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♜" : "\u001B[30m♜";
     }
 }

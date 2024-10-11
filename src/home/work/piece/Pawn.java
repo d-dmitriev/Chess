@@ -36,4 +36,9 @@ public class Pawn extends ChessPiece {
     public String getSymbol() {
         return PAWN_SYMBOL;
     }
+
+    @Override
+    public String getSymbolForBoard() {
+        return getColor().equals(BOTTOM_PLAYER_COLOR) ? "\u001B[37m♟" : "\u001B[30m♟";
+    }
 }
