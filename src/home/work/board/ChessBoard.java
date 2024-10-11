@@ -1,8 +1,10 @@
 package home.work.board;
 
 import home.work.game.Castling;
+import home.work.game.Cell;
 import home.work.game.Game;
 import home.work.piece.ChessPiece;
+import home.work.piece.Queen;
 
 import static home.work.game.Constants.*;
 
@@ -11,6 +13,7 @@ public class ChessBoard implements Game {
     public ChessPiece[][] board = new ChessPiece[8][8]; // creating a field for game
     String nowPlayer;
     private final Castling castling = new Castling(this);
+    private final Cell cell = new Cell(this);
 
     public ChessBoard(String nowPlayer) {
         this.nowPlayer = nowPlayer;
@@ -98,6 +101,9 @@ public class ChessBoard implements Game {
 
     public void movePieceToPosition(int fromLine, int fromColumn, int toLine, int toColumn) {
         ChessPiece piece = getPieceOnCell(fromLine, fromColumn);
+        if (isPawnOnCell(fromLine, fromColumn) && ((nowPlayerColor().equals(BOTTOM_PLAYER_COLOR) && toLine == TOP_PLAYER_KING_LINE) || (nowPlayerColor().equals(TOP_PLAYER_COLOR) && toLine == BOTTOM_PLAYER_KING_LINE))) {
+            piece = new Queen(nowPlayerColor());
+        }
         setPaceOnCell(piece, toLine, toColumn);
         piece.uncheck();
         setPaceOnCell(null, fromLine, fromColumn);
@@ -118,6 +124,14 @@ public class ChessBoard implements Game {
     public boolean isKingOnCell(int line, int column) {
         ChessPiece piece = this.getPieceOnCell(line, column);
         return piece != null && piece.hasSymbol(KING_SYMBOL);
+    }
+    public boolean isPawnOnCell(int line, int column) {
+        ChessPiece piece = this.getPieceOnCell(line, column);
+        return piece != null && piece.hasSymbol(PAWN_SYMBOL);
+    }
+
+    public boolean isNotUnderAttack(int line, int column) {
+        return !cell.isUnderAttack(line, column);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
