@@ -172,7 +172,7 @@ public class Cell {
          */
         int horseLine = line + 1;
         int horseColumn = column + 2;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -188,7 +188,7 @@ public class Cell {
          */
         horseLine = line + 2;
         horseColumn = column + 1;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -204,7 +204,7 @@ public class Cell {
          */
         horseLine = line + 2;
         horseColumn = column - 1;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -220,7 +220,7 @@ public class Cell {
          */
         horseLine = line + 1;
         horseColumn = column - 2;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -236,7 +236,7 @@ public class Cell {
          */
         horseLine = line - 1;
         horseColumn = column - 2;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -252,7 +252,7 @@ public class Cell {
          */
         horseLine = line - 2;
         horseColumn = column - 1;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -268,7 +268,7 @@ public class Cell {
          */
         horseLine = line - 2;
         horseColumn = column + 1;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
         /*
          * 7 | 0 0 0 0 0 0 0 0
@@ -284,7 +284,7 @@ public class Cell {
          */
         horseLine = line - 1;
         horseColumn = column + 2;
-        if (game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
+        if (game.checkPos(horseLine) && game.checkPos(horseColumn) && game.isOpponentPieceOnCell(horseLine, horseColumn) && (game.isHorseOnCell(horseLine, horseColumn)))
             return true;
 
         return false;
